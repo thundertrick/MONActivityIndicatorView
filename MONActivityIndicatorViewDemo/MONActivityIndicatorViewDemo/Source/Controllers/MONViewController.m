@@ -21,39 +21,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    MONActivityIndicatorView *indicatorView = [[MONActivityIndicatorView alloc] init];
+    MONActivityIndicatorView *indicatorView = [[MONActivityIndicatorView alloc] initWithParentView:self.view];
     indicatorView.delegate = self;
     indicatorView.numberOfCircles = 3;
     indicatorView.radius = 20;
     indicatorView.internalSpacing = 3;
     [indicatorView startAnimating];
-    
-    [self.view addSubview:indicatorView];
-    [self placeAtTheCenterWithView:indicatorView];
-    
+        
     [NSTimer scheduledTimerWithTimeInterval:7 target:indicatorView selector:@selector(stopAnimating) userInfo:nil repeats:NO];
     [NSTimer scheduledTimerWithTimeInterval:9 target:indicatorView selector:@selector(startAnimating) userInfo:nil repeats:NO];
-}
-
-#pragma mark -
-#pragma mark - Centering Indicator View
-
-- (void)placeAtTheCenterWithView:(UIView *)view {
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:view
-                                                          attribute:NSLayoutAttributeCenterX
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterX
-                                                         multiplier:1.0f
-                                                           constant:0.0f]];
-    
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:view
-                                                          attribute:NSLayoutAttributeCenterY
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterY
-                                                         multiplier:1.0f
-                                                           constant:0.0f]];
 }
 
 #pragma mark -

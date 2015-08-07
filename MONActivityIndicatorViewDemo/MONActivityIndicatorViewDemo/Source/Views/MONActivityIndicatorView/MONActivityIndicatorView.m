@@ -78,6 +78,16 @@
     return self;
 }
 
+- (id)initWithParentView:(UIView*) parentView {
+    self = [super initWithFrame:CGRectZero];
+    if (self) {
+        [self setupDefaults];
+        [parentView addSubview:self];
+        [self placeAtTheCenterOfView:parentView];
+    }
+    return self;
+}
+
 #pragma mark -
 #pragma mark - Intrinsic Content Size
 
@@ -143,6 +153,27 @@
     [self.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [obj removeFromSuperview];
     }];
+}
+
+#pragma mark -
+#pragma mark - Centering Indicator View
+
+- (void)placeAtTheCenterOfView:(UIView *) parentView {
+    [parentView addConstraint:[NSLayoutConstraint constraintWithItem:self
+                                                          attribute:NSLayoutAttributeCenterX
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:parentView
+                                                          attribute:NSLayoutAttributeCenterX
+                                                         multiplier:1.0f
+                                                           constant:0.0f]];
+    
+    [parentView addConstraint:[NSLayoutConstraint constraintWithItem:self
+                                                          attribute:NSLayoutAttributeCenterY
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:parentView
+                                                          attribute:NSLayoutAttributeCenterY
+                                                         multiplier:1.0f
+                                                           constant:0.0f]];
 }
 
 #pragma mark -

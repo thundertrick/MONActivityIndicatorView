@@ -30,6 +30,11 @@
 
 
 /**
+ Init with parent view and place activity indicator at the center of parent view
+ */
+- (id)initWithParentView:(UIView*) parentView;
+
+/**
  Starts the animation of the activity indicator.
  */
 - (void)startAnimating;
